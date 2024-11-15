@@ -14,7 +14,6 @@
 
     console.log("TINDER STARTED!!!")
 
-    // Get profiles
     const profilesContainer = document.querySelector("section > main > div > div:nth-child(2) > div > div");
 
     while (
@@ -52,11 +51,11 @@
     function turnProfileIntoHTML(profile) {
         return `
           <div class="suggestion-card" data-username="${profile.username}">
-    <img src="${profile.profileImageSrc}" alt="${profile.username}">
-    <h2>${profile.username}</h3>
-    <h3>${profile.name}</h3>
-    <p>${profile.followedBy}</p>
-  </div>
+	    <img src="${profile.profileImageSrc}" alt="${profile.username}">
+	    <h2>${profile.username}</h3>
+	    <h3>${profile.name}</h3>
+	    <p>${profile.followedBy}</p>
+	  </div>
         `
     }
 
@@ -65,7 +64,7 @@
         return getDataFromProfile(profile)
     })
 
-    // profilesContainer.style.display = "none";
+    profilesContainer.style.display = "none";
 
     profilesContainer.parentElement.innerHTML += `
     <div id="suggestions" class="suggestions-container">
@@ -78,7 +77,6 @@
 
     let currentIndex = 0;
 
-    // Function to update the visible suggestion card
     function showCurrentSuggestion() {
         const cards = document.querySelectorAll('.suggestion-card');
         cards.forEach((card, index) => {
@@ -86,25 +84,19 @@
         });
     }
 
-    // Function to follow a user (dummy function)
-    async function followUser(username) {
+    async function followUser(username, currentIndex) {
         console.log(`Following ${username}...`);
-        // In a real scenario, you would use Instagram's API or your backend here
-        // Example:
-        // await fetch(`/follow/${username}`, { method: 'POST' });
+	profiles[currentIndex].followButton.click()
     }
 
-    // Function to handle swipe action
     function handleSwipe(action) {
         const currentCard = document.querySelectorAll('.suggestion-card')[currentIndex];
         const username = currentCard.getAttribute('data-username');
 
         if (action === 'right') {
-            // Follow the user
-            followUser(username);
+            followUser(username, currentIndex);
         }
 
-        // Move to the next suggestion
         currentIndex++;
         if (currentIndex < document.querySelectorAll('.suggestion-card').length) {
             showCurrentSuggestion();
@@ -113,12 +105,11 @@
         }
     }
 
-    // Event listeners for swipe actions (left and right arrow keys)
     document.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowRight') {
-            handleSwipe('right'); // Swipe right to follow
+            handleSwipe('right');
         } else if (event.key === 'ArrowLeft') {
-            handleSwipe('left'); // Swipe left to skip
+            handleSwipe('left');
         }
     });
 

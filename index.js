@@ -64,9 +64,9 @@
         return getDataFromProfile(profile)
     })
 
-    profilesContainer.style.display = "none";
+    // profilesContainer.style.display = "none";
 
-    profilesContainer.parentElement.innerHTML += `
+    document.querySelector("main[role^='main']").innerHTML += `
     <div id="suggestions" class="suggestions-container">
 	</div>
     `
@@ -77,7 +77,7 @@
 
     let currentIndex = 0;
 
-    function showCurrentSuggestion() {
+    /* function showCurrentSuggestion() {
         const cards = document.querySelectorAll('.suggestion-card');
         cards.forEach((card, index) => {
             card.style.display = index === currentIndex ? 'block' : 'none';
@@ -86,7 +86,7 @@
 
     async function followUser(username, currentIndex) {
         console.log(`Following ${username}...`);
-	profiles[currentIndex].followButton.click()
+        profiles[currentIndex].followButton()
     }
 
     function handleSwipe(action) {
@@ -114,5 +114,5 @@
     });
 
     // Initial setup
-    showCurrentSuggestion();
+    showCurrentSuggestion(); */
 })();
